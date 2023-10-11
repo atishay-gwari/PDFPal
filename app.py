@@ -75,6 +75,7 @@ def handle_userinput(user_question):
 
 
 def main():
+    openai_api_key = st.secrets["OPENAI_API_KEY"]
     # load_dotenv()
     st.set_page_config(page_title="pdfPal, your personal document assistant",
                        page_icon=":robot_face:",
@@ -83,16 +84,15 @@ def main():
 
     st.header("Welcome to PDFPal :file_folder:")
 
-    
     if "conversation" not in st.session_state:
         st.session_state.conversation = None  # Initialize with a default value, can be None or an initial conversation chain.
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
-    if not openai_api_key.startswith('sk-'):
-        st.error('Please enter your OpenAI API key!', icon='⚠')
-        st.stop()
+    # openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
+    # if not openai_api_key.startswith('sk-'):
+    #     st.error('Please enter your OpenAI API key!', icon='⚠')
+    #     st.stop()
 
 
     user_question = st.text_input("Ask a question to your documents:")
